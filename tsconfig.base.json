@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "add-shooter/Routes": [
+        "apps/add-shooter/src/app/remote-entry/entry.routes.ts"
+      ],
+      "delete-shooter/Routes": [
+        "apps/delete-shooter/src/app/remote-entry/entry.routes.ts"
+      ],
+      "edit-shooter/Routes": [
+        "apps/edit-shooter/src/app/remote-entry/entry.routes.ts"
+      ],
+      "navbar/Routes": ["apps/navbar/src/app/remote-entry/entry.routes.ts"],
+      "shooter-card/Routes": [
+        "apps/shooter-card/src/app/remote-entry/entry.routes.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
