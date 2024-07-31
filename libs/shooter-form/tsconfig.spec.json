@@ -6,6 +6,7 @@
     "target": "es2016",
     "types": ["jest", "node"]
   },
+  "compsite": true,
   "files": ["src/test-setup.ts"],
   "include": [
     "jest.config.ts",

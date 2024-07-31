@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Shooter } from '../../shooter';
 import { ShooterService } from '../../shooter.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -70,30 +70,29 @@ export class ShooterFormComponent {
     { url: 'https://bootdey.com/img/Content/avatar/avatar1.png' },
   ];
   shooterForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    id: new FormControl(''),
-    code: new FormControl(''),
-    number: new FormControl(''),
-    caliber: new FormControl(''),
-
-
+    code: new FormControl<string>(''),
+    id: new FormControl<string>(''),
+    name: new FormControl<string>(''),
+    surname: new FormControl<string>(''),
+    caliber: new FormControl<string>(''),
+    number: new FormControl<string>(''),
+    imageurl: new FormControl<string>(''),
   })
 
   constructor(private shooterService: ShooterService){
 
   }
-  public onAddShooter(): void {
-    //this.router.navigateByUrl('shooter-card')
-    //document.getElementById('add-shooter-form')!.click();
-    // this.shooterService.addShooter(shooterForm.value).subscribe(
+
+  onSubmit() {
+    console.log('Form values:', this.shooterForm.value);
+    // this.shooterService.addShooter(this.shooterForm.value).subscribe(
     //   (response: Shooter) => {
     //     console.log(response);
-    //     shooterForm.reset();
+    //     this.shooterForm.reset();
     //   },
     //   (error: HttpErrorResponse) => {
     //     alert(error.message);
-    //     shooterForm.reset();
+    //     this.shooterForm.reset();
     //   }
     // );
   }
