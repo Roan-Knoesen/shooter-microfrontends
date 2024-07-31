@@ -3,7 +3,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { Shooter } from '../../shooter';
 import { ShooterService } from '../../shooter.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // <div class="container mt-5">
 //     <div class="card">
@@ -70,30 +70,44 @@ export class ShooterFormComponent {
     { url: 'https://bootdey.com/img/Content/avatar/avatar1.png' },
   ];
   shooterForm = new FormGroup({
-    code: new FormControl<string>(''),
-    id: new FormControl<string>(''),
-    name: new FormControl<string>(''),
-    surname: new FormControl<string>(''),
-    caliber: new FormControl<string>(''),
-    number: new FormControl<string>(''),
-    imageurl: new FormControl<string>(''),
+    code: new FormControl(''),
+    id: new FormControl(''),
+    name: new FormControl(''),
+    surname: new FormControl(''),
+    caliber: new FormControl(''),
+    number: new FormControl(''),
+    imageurl: new FormControl(''),
   })
 
   constructor(private shooterService: ShooterService){
 
   }
+  private formToObject(formValue: any): Shooter {
+    return {
+      code: formValue.code,
+      name: formValue.name,
+      id: formValue.id,
+      surname: formValue.surname,
+      caliber: formValue.caliber,
+      number: formValue.number,
+      imageurl: formValue.imageurl
+    };
+  }
 
   onSubmit() {
     console.log('Form values:', this.shooterForm.value);
-    // this.shooterService.addShooter(this.shooterForm.value).subscribe(
-    //   (response: Shooter) => {
-    //     console.log(response);
-    //     this.shooterForm.reset();
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     alert(error.message);
-    //     this.shooterForm.reset();
-    //   }
-    // );
+    const shooter: Shooter = this.formToObject(this.shooterForm.value);
+    this.shooterService.addShooter(shooter).subscribe(
+      (response: Shooter) => {
+        console.log(response);
+        this.shooterForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        this.shooterForm.reset();
+      }
+    );
+    
   }
+  
 }
