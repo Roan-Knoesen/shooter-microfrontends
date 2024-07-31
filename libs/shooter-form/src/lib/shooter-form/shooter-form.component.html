@@ -1,0 +1,83 @@
+<!-- <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Add Shooter</h5>
+      </div>
+      <div class="card-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddShooter()">
+          <div class="form-group">
+            <label for="avatar">Select an avatar</label>
+            <div>
+              <label *ngFor="let avatar of avatars">
+                <input type="radio" ngModel name="avatar" [value]="avatar.url" required>
+                <img [src]="avatar.url" alt="" class="img-fluid rounded-circle w-60">
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" ngModel name="surname" class="form-control" id="surname" placeholder="Surname" required>
+          </div>
+          <div class="form-group">
+            <label for="code">Shooter Code</label>
+            <input type="text" ngModel name="code" class="form-control" id="code" placeholder="Code" required>
+          </div>
+          <div class="form-group">
+            <label for="id">Shooter ID</label>
+            <input type="text" ngModel name="id" class="form-control" id="id" placeholder="ID" required>
+          </div>
+          <div class="form-group">
+            <label for="caliber">Rifle Caliber</label>
+            <input type="text" ngModel name="caliber" class="form-control" id="caliber" placeholder="Caliber" required>
+          </div>
+          <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input type="text" ngModel name="number" class="form-control" id="number" placeholder="Phone" required>
+          </div>
+          <div class="card-footer text-right">
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Add Shooter</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="shooterForm">
+          <div class="formGroup">
+            <label for="name">Name: </label>
+            <input id="name" type="text" formControlName="name">
+          </div>
+          <div class="formGroup">
+            <label for="surname">Surname: </label>
+            <input id="surname" type="text" formControlName="surame">
+          </div>
+          <div class="formGroup">
+            <label for="code">Code: </label>
+            <input id="code" type="text" formControlName="code">
+          </div>
+          <div class="formGroup">
+            <label for="id">ID: </label>
+            <input id="id" type="text" formControlName="id">
+          </div>
+          <div class="formGroup">
+            <label for="caliber">Caliber: </label>
+            <input id="caliber" type="text" formControlName="caliber">
+          </div>
+          <div class="formGroup">
+            <label for="number">Number: </label>
+            <input id="number" type="text" formControlName="number">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>  
+  

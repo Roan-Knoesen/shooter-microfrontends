@@ -6,11 +6,12 @@
     "target": "es2016",
     "types": ["jest", "node"]
   },
+  "composite": true,
   "files": ["src/test-setup.ts"],
   "include": [
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ]
+, "../shooter-card/src/app/get-shooters.service.spec.ts"  ]
 }

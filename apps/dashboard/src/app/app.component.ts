@@ -1,21 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Shooter } from 'libs/shooter-form/src/shooter';
+
 
 @Component({
   standalone: true,
   imports: [RouterModule, CommonModule],
   selector: 'shooter-microfrontends-root',
   template: `
-  <div class="dashboard-nav">Dashboard</div>
-    <router-outlet></router-outlet>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">Shooter Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" (click)="addShooter()" >Add Shooter <span class="sr-only">(current)</span></a>
+        </li>
+       </ul>
+       <form class="form-inline my-2 my-lg-0">
+        <input type="search" ngModel
+        name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
+       </form>
+    </div>
+  </nav>
+  <router-outlet> </router-outlet>
   `,
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
+  public shooters: Shooter[] = [];
   constructor(private router: Router) {}
-  
-  ngOnInit(){
-    this.router.navigateByUrl('navbar');
+
+  addShooter(){
+    this.router.navigateByUrl('add-shooter')
   }
 }

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'navbar',
+  displayName: 'shooter-form',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/navbar',
+  coverageDirectory: '../../coverage/libs/shooter-form',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
