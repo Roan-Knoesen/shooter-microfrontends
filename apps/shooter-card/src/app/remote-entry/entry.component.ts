@@ -12,8 +12,8 @@ import { GetShootersService } from '../get-shooters.service';
   templateUrl: './entry.component.html',
 })
 export class RemoteEntryComponent implements OnInit{
-openEdit() {
-    this.router.navigateByUrl('edit-shooter')
+openEdit(shooter: Shooter) {
+    this.router.navigateByUrl('edit-shooter') // I dont get the changes
 }
 
   public shooters: Shooter[] = [];

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { Shooter } from 'libs/shooter-form/src/shooter';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -17,7 +16,7 @@ import { Shooter } from 'libs/shooter-form/src/shooter';
     <div class="collapse navbar-collapse" id="navbarColor02">
        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" (click)="addShooter()" >Add Shooter <span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="add-shooter" >Add Shooter <span class="sr-only">(current)</span></a>
         </li>
        </ul>
        <form class="form-inline my-2 my-lg-0">
@@ -29,12 +28,6 @@ import { Shooter } from 'libs/shooter-form/src/shooter';
   <router-outlet> </router-outlet>
   `,
 })
+
 export class AppComponent{
-
-  public shooters: Shooter[] = [];
-  constructor(private router: Router) {}
-
-  addShooter(){
-    this.router.navigateByUrl('add-shooter')
-  }
 }

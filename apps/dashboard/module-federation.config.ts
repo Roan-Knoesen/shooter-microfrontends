@@ -4,8 +4,8 @@ const config: ModuleFederationConfig = {
   name: 'dashboard',
   remotes: [
     'add-shooter',
-    // 'edit-shooter',
-    //'delete-shooter',
+    'edit-shooter',
+    //'delete-shooter',  //not moving to a new page
     'shooter-card',
   ],
 };
