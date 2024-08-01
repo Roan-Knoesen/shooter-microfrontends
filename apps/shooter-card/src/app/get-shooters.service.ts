@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Shooter } from '../../../../libs/shooter-form/src/shooter';
+import { Shooter } from '../../../../libs/shooter-form/src/lib/entity/shooter';
 
 @Injectable({
   providedIn: 'root'

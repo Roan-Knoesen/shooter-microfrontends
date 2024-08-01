@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
-import { Shooter } from '../../shooter';
-import { ShooterService } from '../../shooter.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ShooterService} from '../services/shooter.service';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import { Shooter } from '../entity/shooter';
+import { ShooterStateService } from '../services/shooter-state.service';
+import { Helpers } from '../utils/helpers';
+
 
 @Component({
   selector: 'lib-shooter-form',
@@ -13,7 +16,8 @@ import { Router } from '@angular/router';
   templateUrl: './shooter-form.component.html',
   styleUrl: './shooter-form.component.css',
 })
-export class ShooterFormComponent {
+export class ShooterFormComponent implements OnDestroy, OnInit {
+
   avatars = [
     { url: 'https://bootdey.com/img/Content/avatar/avatar6.png' },
     { url: 'https://bootdey.com/img/Content/avatar/avatar5.png' },
@@ -22,58 +26,76 @@ export class ShooterFormComponent {
     { url: 'https://bootdey.com/img/Content/avatar/avatar2.png' },
     { url: 'https://bootdey.com/img/Content/avatar/avatar1.png' },
   ];
-  
-  shooterForm = new FormGroup({
-    code: new FormControl(''),
-    id: new FormControl(''),
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    caliber: new FormControl(''),
-    number: new FormControl(''),
-    imageurl: new FormControl(''),
-  })
+  shooterForm! : FormGroup;
+  private isEdit = false;
 
-  constructor(private shooterService: ShooterService, private router: Router){
-
+  private initForm() {
+    this.shooterForm = this.formBuilder.group({
+      code: [this.shooter?.code || '', Validators.required],//TODO this feild is confusing af we should rather have a separate value to index the shooters
+      id:  [this.shooter?.id || '', Validators.required],
+      name:  [this.shooter?.name || '', Validators.required],
+      surname:  [this.shooter?.surname || '', Validators.required],
+      caliber:  [this.shooter?.caliber || '', Validators.required],
+      number:  [this.shooter?.number || '', Validators.required],
+      imageurl:  [this.shooter?.imageurl || '', Validators.required],
+    });
   }
-  
-  private formToObject(formValue: any): Shooter {
-    return {
-      code: formValue.code,
-      name: formValue.name,
-      id: formValue.id,
-      surname: formValue.surname,
-      caliber: formValue.caliber,
-      number: formValue.number,
-      imageurl: formValue.imageurl
-    };
+
+  private subscriptions = new Subscription();
+  private shooter!: Shooter | null;
+
+
+  constructor(private shooterService: ShooterService,
+              private shooterStateService: ShooterStateService,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder,
+              private router: Router) {
+
   }
 
   onSubmit() {
     console.log('Form values:', this.shooterForm.value);
-    //if (page is add){
-    const shooter: Shooter = this.formToObject(this.shooterForm.value);
-    this.shooterService.addShooter(shooter).subscribe(
-      (response: Shooter) => {
-        console.log(response);
-        this.shooterForm.reset();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        this.shooterForm.reset();
+    const shooter: Shooter = Helpers.clone(this.shooterForm.value);
+
+    if (this.isEdit) {
+      this.dispatchMethod(shooter, 'addShooter');
+      this.router.navigateByUrl('shooter-card');
+    } else {
+      this.dispatchMethod(shooter, 'updateShooter');
+      this.router.navigateByUrl('shooter-card');
+    }
+  }
+
+  ngOnDestroy(): void {
+    //closing all subs
+    this.subscriptions.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.shooterStateService.shooter.subscribe({
+      next: (res) => {
+        this.shooter = res
+        this.initForm()
+        this.isEdit=true
       }
-    );
-  // } else{
-  //   this.shooterService.updateShooter(shooter).subscribe(
-  //     (response: Shooter) => {
-  //       console.log(response);
-  //       //this.getShooters();
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // } 
-    this.router.navigateByUrl('shooter-card');
+    })
+
+  }
+
+  private dispatchMethod(shooter: Shooter, operation : 'updateShooter' | 'addShooter') {
+    const sub = this.shooterService[operation](shooter).subscribe({
+      next: (response) => {
+        this.shooterStateService.clearState();
+        if (response) {
+          console.log(response);
+          this.shooterForm.reset();
+        }
+      },
+      error: (error) => {
+        alert(error.message);
+        this.shooterForm.reset(); //TODO: no need to reset if fails
+      }
+    });
+    this.subscriptions.add(sub);
   }
 }

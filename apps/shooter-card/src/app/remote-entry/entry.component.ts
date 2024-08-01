@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterOutlet } from '@angular/router';
-import { Shooter } from 'libs/shooter-form/src/shooter';
+import { Shooter } from 'libs/shooter-form/src/lib/entity/shooter';
 import { GetShootersService } from '../get-shooters.service';
 
 @Component({

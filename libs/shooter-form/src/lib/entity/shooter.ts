@@ -1,4 +1,5 @@
 export interface Shooter{
+    index: number;
     code: string;
     id: number;
     name: string;
