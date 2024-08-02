@@ -6,13 +6,8 @@
       loadChildren: () =>
         import('shooter-card/Routes').then((m) => m.remoteRoutes),
     },
-    // {
-    //   path: 'delete-shooter',
-    //   loadChildren: () =>
-    //     import('delete-shooter/Routes').then((m) => m.remoteRoutes),
-    // },
     {
-      path: 'edit-shooter',  //must pull data from the card that edit was clicked
+      path: 'edit-shooter/:id',
       loadChildren: () =>
         import('edit-shooter/Routes').then((m) => m.remoteRoutes),
     },

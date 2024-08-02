@@ -1,7 +1,7 @@
 export interface Shooter{
     index: number;
     code: string;
-    id: number;
+    id: string;
     name: string;
     surname: string;
     caliber: string;

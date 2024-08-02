@@ -5,7 +5,6 @@ const config: ModuleFederationConfig = {
   remotes: [
     'add-shooter',
     'edit-shooter',
-    //'delete-shooter',  //not moving to a new page
     'shooter-card',
   ],
 };

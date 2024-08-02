@@ -8,12 +8,16 @@ import { Shooter } from '../../../../libs/shooter-form/src/lib/entity/shooter';
 })
 export class GetShootersService {
 
-  private apiServerUrl = 'http://localhost:8080'
+  private apiServerUrl = 'http://localhost:8080/shooter'
 
   constructor(private http: HttpClient){}
 
   public getShooters(): Observable<Shooter[]> {
-      return this.http.get<Shooter[]>(`${this.apiServerUrl}/shooter/findall`)
+      return this.http.get<Shooter[]>(`${this.apiServerUrl}/findall`)
+  }
+
+  public deleteShooter(id: string): Observable<Shooter[]> {
+    return this.http.delete<Shooter[]>(`${this.apiServerUrl}/deleteShooter/${id}`)
   }
 }
   

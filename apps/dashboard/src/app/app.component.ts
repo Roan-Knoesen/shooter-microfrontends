@@ -19,10 +19,6 @@ import { RouterModule } from '@angular/router';
             <a class="nav-link" routerLink="add-shooter" >Add Shooter <span class="sr-only">(current)</span></a>
         </li>
        </ul>
-       <form class="form-inline my-2 my-lg-0">
-        <input type="search" ngModel
-        name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
-       </form>
     </div>
   </nav>
   <router-outlet> </router-outlet>

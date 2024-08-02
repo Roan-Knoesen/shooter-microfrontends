@@ -1,17 +1,11 @@
-  <!-- <div class="container mt-5">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title">Add Shooter</h5>
-      </div> -->
 
-<!--  TODO fix the flow-->
       <div class="card-body">
         <form [formGroup]="shooterForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="avatar">Select an avatar</label>
             <div>
               <label *ngFor="let avatar of avatars">
-                <input type="radio" formControlName="imageurl" [value]="avatar.url" required>
+                <input type="radio" formControlName="imageurl" [value]="avatar.url">
                 <img [src]="avatar.url" alt="" class="img-fluid rounded-circle w-60">
               </label>
             </div>
@@ -46,5 +40,4 @@
           </div>
         </form>
       </div>
-    <!-- </div>
-  </div>   -->
+

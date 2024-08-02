@@ -26,12 +26,13 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
     { url: 'https://bootdey.com/img/Content/avatar/avatar2.png' },
     { url: 'https://bootdey.com/img/Content/avatar/avatar1.png' },
   ];
+
   shooterForm! : FormGroup;
   private isEdit = false;
 
   private initForm() {
     this.shooterForm = this.formBuilder.group({
-      code: [this.shooter?.code || '', Validators.required],//TODO this feild is confusing af we should rather have a separate value to index the shooters
+      code: [this.shooter?.code || '', Validators.required],
       id:  [this.shooter?.id || '', Validators.required],
       name:  [this.shooter?.name || '', Validators.required],
       surname:  [this.shooter?.surname || '', Validators.required],
@@ -44,45 +45,42 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
   private subscriptions = new Subscription();
   private shooter!: Shooter | null;
 
-
   constructor(private shooterService: ShooterService,
               private shooterStateService: ShooterStateService,
-              private route: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private router: Router) {
-
-  }
+              private router: Router) {}
 
   onSubmit() {
     console.log('Form values:', this.shooterForm.value);
     const shooter: Shooter = Helpers.clone(this.shooterForm.value);
 
     if (this.isEdit) {
-      this.dispatchMethod(shooter, 'addShooter');
+      this.dispatchMethod(shooter, 'updateShooter');
       this.router.navigateByUrl('shooter-card');
     } else {
-      this.dispatchMethod(shooter, 'updateShooter');
+      this.dispatchMethod(shooter, 'addShooter');
       this.router.navigateByUrl('shooter-card');
     }
   }
 
   ngOnDestroy(): void {
-    //closing all subs
     this.subscriptions.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.shooterStateService.shooter.subscribe({
+    this.shooterStateService.shooter$.subscribe({
       next: (res) => {
         this.shooter = res
         this.initForm()
         this.isEdit=true
       }
     })
-
   }
 
   private dispatchMethod(shooter: Shooter, operation : 'updateShooter' | 'addShooter') {
+    if (this.shooter?.index){
+      shooter.index = this.shooter?.index;
+    }
     const sub = this.shooterService[operation](shooter).subscribe({
       next: (response) => {
         this.shooterStateService.clearState();
@@ -93,7 +91,6 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
       },
       error: (error) => {
         alert(error.message);
-        this.shooterForm.reset(); //TODO: no need to reset if fails
       }
     });
     this.subscriptions.add(sub);
