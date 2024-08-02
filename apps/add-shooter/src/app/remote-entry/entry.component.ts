@@ -6,8 +6,6 @@ import { ShooterFormComponent } from 'libs/shooter-form/src/lib/shooter-form/sho
   standalone: true,
   imports: [CommonModule, ShooterFormComponent],
   selector: 'shooter-microfrontends-add-shooter-entry',
-  templateUrl: './entry.component.html'
+  templateUrl: './entry.component.html',
 })
-
-export class RemoteEntryComponent {
-}
+export class RemoteEntryComponent {}

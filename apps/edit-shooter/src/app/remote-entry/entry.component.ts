@@ -8,6 +8,4 @@ import { ShooterFormComponent } from '@shooter-microfrontends/shooter-form';
   selector: 'shooter-microfrontends-edit-shooter-entry',
   templateUrl: './entry.component.html',
 })
-export class RemoteEntryComponent {
-  
-}
+export class RemoteEntryComponent {}
