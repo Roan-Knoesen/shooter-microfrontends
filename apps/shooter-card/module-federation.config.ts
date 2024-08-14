@@ -8,3 +8,5 @@ const config: ModuleFederationConfig = {
 };
 
 export default config;
+//This configuration allows the shooter-card microfrontend to expose its routing configuration (entry.routes.ts) to other parts of the application 
+//or other microfrontends via Module Federation. This is key to enabling independent deployment and integration of microfrontends in a modular architecture.

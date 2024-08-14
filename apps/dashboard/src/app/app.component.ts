@@ -23,14 +23,15 @@ import { RouterModule } from '@angular/router';
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" routerLink="add-shooter"
+            <!-- When addshooter is clicked it must navigate to the add-shooter microfrontend via the url-->
+            <a class="nav-link" routerLink="add-shooter"  
               >Add Shooter <span class="sr-only">(current)</span></a
             >
           </li>
         </ul>
       </div>
     </nav>
-    <router-outlet> </router-outlet>
+    <router-outlet> </router-outlet> <!--This router-outlet is used to display the shooter-card microfrontend conent on the dashboard-->
   `,
 })
 export class AppComponent {}

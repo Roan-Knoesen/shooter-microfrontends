@@ -34,7 +34,7 @@ export class RemoteEntryComponent implements OnInit {
 
   openEdit(code: string | undefined, shooter: Shooter) {
     this.stateService.initiateEditState(shooter);
-    this.router.navigateByUrl(`edit-shooter/${code}`);
+    this.router.navigateByUrl(`edit-shooter/${code}`); //navigate via url to the edit microfrontend
   }
 
   deleteShooter(id: string) {

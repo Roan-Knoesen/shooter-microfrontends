@@ -70,15 +70,14 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
 
   onSubmit() {
     console.log('Form values:', this.shooterForm.value);
-    const shooter: Shooter = Helpers.clone(this.shooterForm.value);
+    const shooter: Shooter = Helpers.clone(this.shooterForm.value);  //Create deep-copy of the form object and then sends back a shooter object
 
     if (this.isEdit) {
       this.dispatchMethod(shooter, 'updateShooter');
-      this.router.navigateByUrl('shooter-card');
     } else {
       this.dispatchMethod(shooter, 'addShooter');
-      this.router.navigateByUrl('shooter-card');
     }
+    this.router.navigateByUrl('shooter-card');
   }
 
   private dispatchMethod(
