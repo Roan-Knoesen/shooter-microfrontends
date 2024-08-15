@@ -31,7 +31,7 @@ import { RouterModule } from '@angular/router';
         </ul>
       </div>
     </nav>
-    <router-outlet> </router-outlet> <!--This router-outlet is used to display the shooter-card microfrontend conent on the dashboard-->
+    <router-outlet> </router-outlet> <!--This router-outlet is used to display the shooter-card microfrontend content on the dashboard-->
   `,
 })
 export class AppComponent {}

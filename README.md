@@ -1,18 +1,17 @@
 # ShooterMicrofrontends
 
-## This is the project setup:
+## The project setup
 - Java JDK 22.0.1
 - Springboot 3.3.0
 - Apache Maven 3.9.6
+- Postgress DB
 - Angular 18.1.1
 - Node 22.6.0
-- Postgress DB
 
-## This is example I followed to build the application:
+## This is example I followed to build the application
 (https://nx.dev/recipes/angular/dynamic-module-federation-with-angular)
 
-## Steps followed:
-
+## Steps followed
 Creating my workspace using this command: `npx create-nx-workspace shooter-microfrontends`
 
 Pick the Angular stack, Integrated Monorepo layout and the webpack bundle, choose default for the rest of the promts
@@ -37,3 +36,10 @@ The helper class creates a deep-copy of the Formgroup shooter-form
 
 ## Run the application with
 `nx serve dashboard`
+
+## Run the NX Graph 
+`nx graph`
+Which can be accesed via the browser window
+
+## To access the NX Graph in Visual Studio Code as another tab
+In the far left of the screen open NX Console and at the top of the Nx Console pane next to projects click on the Show full project graph or you can inspect them individually next to the application folders Focus in NX Graph

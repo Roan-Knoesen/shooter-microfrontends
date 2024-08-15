@@ -74,10 +74,11 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
 
     if (this.isEdit) {
       this.dispatchMethod(shooter, 'updateShooter');
+      this.router.navigateByUrl('shooter-card');
     } else {
       this.dispatchMethod(shooter, 'addShooter');
+      this.router.navigateByUrl('shooter-card');
     }
-    this.router.navigateByUrl('shooter-card');
   }
 
   private dispatchMethod(
