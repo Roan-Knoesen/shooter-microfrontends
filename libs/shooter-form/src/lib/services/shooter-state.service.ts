@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Shooter } from '../entity/shooter';
+import { ShooterFormComponent } from '../shooter-form/shooter-form.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class ShooterStateService {
   shooter$ = this.shooter.asObservable();
 
   initiateEditState(shooter: Shooter) {
+    ShooterFormComponent.isEdit=true;
     this.shooter.next(shooter);
   }
 

@@ -31,7 +31,7 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
   ];
 
   shooterForm!: FormGroup;
-  private isEdit = false;
+  public static isEdit = false;
   private subscriptions = new Subscription();
   private shooter!: Shooter | null;
 
@@ -51,7 +51,6 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
       next: (res) => {
         this.shooter = res;
         this.initForm();
-        this.isEdit = true;
       },
     });
   }
@@ -72,7 +71,7 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
     console.log('Form values:', this.shooterForm.value);
     const shooter: Shooter = Helpers.clone(this.shooterForm.value);  //Create deep-copy of the form object and then sends back a shooter object
 
-    if (this.isEdit) {
+    if (ShooterFormComponent.isEdit) {
       this.dispatchMethod(shooter, 'updateShooter');
       this.router.navigateByUrl('shooter-card');
     } else {
@@ -90,11 +89,12 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
     }
     const sub = this.shooterService[operation](shooter).subscribe({
       next: (response) => {
-        this.shooterStateService.clearState();
+        //this.shooterStateService.clearState();
         if (response) {
           console.log(response);
           this.shooterForm.reset();
         }
+        this.shooterStateService.clearState();
       },
       error: (error) => {
         alert(error.message);
