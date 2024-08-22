@@ -89,7 +89,6 @@ export class ShooterFormComponent implements OnDestroy, OnInit {
     }
     const sub = this.shooterService[operation](shooter).subscribe({
       next: (response) => {
-        //this.shooterStateService.clearState();
         if (response) {
           console.log(response);
           this.shooterForm.reset();

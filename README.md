@@ -8,8 +8,11 @@
 - Angular 18.1.1
 - Node 22.6.0
 
-## This is example I followed to build the application
+## This is example I followed to build the application in Angular
 (https://nx.dev/recipes/angular/dynamic-module-federation-with-angular)
+
+## Example to follow for React
+(https://nx.dev/concepts/module-federation/micro-frontend-architecture)
 
 ## Steps followed
 Creating my workspace using this command: `npx create-nx-workspace shooter-microfrontends`
