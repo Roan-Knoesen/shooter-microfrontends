@@ -24,7 +24,9 @@ It acts as a host application for the Micro-Frontends
 
 Following that I started creating the Microfrontends to be consumed by Dashboard
 `nx g @nx/angular:remote apps/add-shooter --prefix=shooter-microfrontends --host=dashboard`
+
 `nx g @nx/angular:remote apps/edit-shooter --prefix=shooter-microfrontends --host=dashboard`
+
 `nx g @nx/angular:remote apps/shooter-card --prefix=shooter-microfrontends --host=dashboard`
 
 The generator performed the following changes to automatically link these microfrontends to the Dashboard:
