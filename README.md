@@ -19,7 +19,10 @@ Creating my workspace using this command: `npx create-nx-workspace shooter-micro
 
 Pick the Angular stack, Integrated Monorepo layout and the webpack bundle, choose default for the rest of the promts
 
-I then proceeded to create the Host application called Dashboard `nx g @nx/angular:host apps/dashboard --prefix=shooter-microfrontends`
+I then proceeded to create the Host application called Dashboard 
+
+`nx g @nx/angular:host apps/dashboard --prefix=shooter-microfrontends`
+
 It acts as a host application for the Micro-Frontends
 
 Following that I started creating the Microfrontends to be consumed by Dashboard
