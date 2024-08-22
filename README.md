@@ -23,6 +23,7 @@ I then proceeded to create the Host application called Dashboard `nx g @nx/angul
 It acts as a host application for the Micro-Frontends
 
 Following that I started creating the Microfrontends to be consumed by Dashboard
+
 `nx g @nx/angular:remote apps/add-shooter --prefix=shooter-microfrontends --host=dashboard`
 
 `nx g @nx/angular:remote apps/edit-shooter --prefix=shooter-microfrontends --host=dashboard`
